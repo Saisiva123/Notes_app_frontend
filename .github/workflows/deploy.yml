@@ -39,11 +39,11 @@ jobs:
             - name: Build, tag, and push image to Docker Hub
               id: build-image
               env:
-                REACT_APP_ENV: ${{ env.REACT_APP_ENV }}
-                REACT_APP_API_URL: ${{ env.REACT_APP_API_URL }}
+                REACT_APP_ENV: ${{ vars.REACT_APP_ENV }}
+                REACT_APP_API_URL: ${{ vars.REACT_APP_API_URL }}
               run: |
 
-                docker build --build-arg REACT_APP_ENV=${{ env.REACT_APP_ENV }} --build-arg REACT_APP_API_URL=${{ env.REACT_APP_API_URL }} -t node_client_app .
+                docker build --build-arg REACT_APP_ENV=${{ vars.REACT_APP_ENV }} --build-arg REACT_APP_API_URL=${{ vars.REACT_APP_API_URL }} -t node_client_app .
                 
                 docker tag node_client_app saisivadurgaprasad/notes_app_client:staging-${{ env.VERSION }}
                 docker push saisivadurgaprasad/notes_app_client:staging-${{ env.VERSION }}
