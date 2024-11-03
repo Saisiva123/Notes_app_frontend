@@ -10,6 +10,9 @@ COPY . .
 
 ARG REACT_APP_ENV
 
+ENV REACT_APP_ENV=${REACT_APP_ENV}
+ENV REACT_APP_API_URL=${REACT_APP_API_URL}
+
 RUN if ["${REACT_APP_ENV}" = "production"]; \
         then npm run build:production; \
     elif [ "${REACT_APP_ENV}" = "staging" ]; \
