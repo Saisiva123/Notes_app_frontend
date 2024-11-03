@@ -43,7 +43,10 @@ jobs:
                 REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
               run: |
 
-                docker build -t node_client_app .
+                docker build \
+                --build-arg REACT_APP_ENV= ${{ secrets.REACT_APP_ENV }} \
+                --build-arg REACT_APP_API_URL= ${{ secrets.REACT_APP_API_URL }} \ 
+                -t node_client_app .
                 
                 docker tag node_client_app saisivadurgaprasad/notes_app_client:staging-${{ env.VERSION }}
                 docker push saisivadurgaprasad/notes_app_client:staging-${{ env.VERSION }}
